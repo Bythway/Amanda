@@ -3,10 +3,13 @@
     <!--Activities-->
     <string name="title_activity_main">Iniciar Sesión</string>
 
+    <!--Menu-->
+    <string name="action_settings">Configuraciones</string>
+    <string name="navigation_drawer_open">Nose1</string>
+    <string name="navigation_drawer_close">Nose2</string>
+
     <!-- Login -->
     <string name="icon_description">Icono Amanda</string>
     <string name="login_text">Soy Amanda</string>
-    <string name="login_user_hint">Usuario</string>
-    <string name="login_password_hint">Contraseña</string>
     <string name="login_button">Iniciar Sesión con Chairá</string>
 </resources>
