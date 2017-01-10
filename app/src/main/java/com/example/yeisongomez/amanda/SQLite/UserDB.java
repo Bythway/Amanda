@@ -95,4 +95,23 @@ public class UserDB {
             cursor.moveToFirst();
         return cursor;
     }
+
+    public void updateUser(User user){
+        ContentValues values = new ContentValues();
+        values.put(APELLIDOS, user.getAPELLIDOS());
+        values.put(NOMBRES, user.getNOMBRES());
+        values.put(GENERO, user.getGENERO());
+        values.put(RH, user.getRH());
+        values.put(CORREO, user.getCORREO());
+        values.put(ROL, user.getROL());
+        values.put(DEPARTAMENTO, user.getDEPARTAMENTO());
+        values.put(MUNICIPIO, user.getMUNICIPIO());
+        values.put(ESTADO, user.getESTADO());
+        values.put(FOTO, user.getFOTO());
+        DB.update(TABLE_NAME, values, USER_ID + "=?", new String[]{String.valueOf(user.getUSER_ID())});
+    }
+
+    public void deleteUserById(int id){
+        DB.delete(TABLE_NAME, USER_ID + "=?", new String[]{String.valueOf(id)});
+    }
 }

@@ -6,6 +6,7 @@ package com.example.yeisongomez.amanda.Objects;
 
 public class Schedule {
 
+    public int SCHEDULE_ID;
     public String CODIGO;
     public String CODIGOGRUPO;
     public String DIA;
@@ -18,7 +19,8 @@ public class Schedule {
     public String TIEMPO;
     public String UNID_NOMBRE;
 
-    public Schedule(String CODIGO, String CODIGOGRUPO, String DIA, String DOCENTE, String LOCALIDAD, String ESPACIOFISICO, String NOMBREGRUPO, String NOMBREMATERIA, String NOMENCLATURA, String TIEMPO, String UNID_NOMBRE) {
+    public Schedule(int SCHEDULE_ID, String CODIGO, String CODIGOGRUPO, String DIA, String DOCENTE, String LOCALIDAD, String ESPACIOFISICO, String NOMBREGRUPO, String NOMBREMATERIA, String NOMENCLATURA, String TIEMPO, String UNID_NOMBRE) {
+        this.SCHEDULE_ID = SCHEDULE_ID;
         this.CODIGO = CODIGO;
         this.CODIGOGRUPO = CODIGOGRUPO;
         this.DIA = DIA;
@@ -30,6 +32,10 @@ public class Schedule {
         this.NOMENCLATURA = NOMENCLATURA;
         this.TIEMPO = TIEMPO;
         this.UNID_NOMBRE = UNID_NOMBRE;
+    }
+
+    public int getSCHEDULE_ID() {
+        return SCHEDULE_ID;
     }
 
     public String getDIA() {
