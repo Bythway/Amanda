@@ -25,7 +25,8 @@ public class LoginActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, WebViewChairaActivity.class);
+                //Intent intent = new Intent(LoginActivity.this, WebViewChairaActivity.class);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         };
