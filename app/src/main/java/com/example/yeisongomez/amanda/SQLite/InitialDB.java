@@ -24,7 +24,8 @@ public class InitialDB extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_DB);
+        db.execSQL(CREATE_USER);
+        db.execSQL(CREATE_SCHEDULE);
     }
 
     @Override
@@ -37,16 +38,16 @@ public class InitialDB extends SQLiteOpenHelper{
 
     private String CREATE_TABLE_USER = TABLE_USER + " ( " +
             "USER_ID INTEGER PRIMARY KEY autoincrement, " +
-            "CORREO TEXT," +
-            "NOMBRES TEXT," +
-            "APELLIDOS TEXT," +
-            "GENERO TEXT," +
-            "RH TEXT," +
-            "ROL TEXT," +
-            "DEPARTAMENTO TEXT," +
-            "MUNICIPIO TEXT," +
-            "ESTADO TEXT," +
-            "FOTO TEXT), ";
+            "CORREO TEXT, " +
+            "NOMBRES TEXT, " +
+            "APELLIDOS TEXT, " +
+            "GENERO TEXT, " +
+            "RH TEXT, " +
+            "ROL TEXT, " +
+            "DEPARTAMENTO TEXT, " +
+            "MUNICIPIO TEXT, " +
+            "ESTADO TEXT, " +
+            "FOTO TEXT);";
 
     private String CREATE_TABLE_SCHEDULE = TABLE_SCHEDULE + " ( " +
             "SCHEDULE_ID INTEGER PRIMARY KEY autoincrement," +
@@ -60,7 +61,7 @@ public class InitialDB extends SQLiteOpenHelper{
             "NOMBREMATERIA TEXT," +
             "NOMENCLATURA TEXT," +
             "TIEMPO TEXT," +
-            "UNID_NOMBRE TEXT), ";
+            "UNID_NOMBRE TEXT);";
 
     private String CREATE_TABLE_REMINDER = TABLE_REMINDER + " ( " +
             "REMINDER_ID INTEGER PRIMARY KEY autoincrement," +
@@ -72,5 +73,6 @@ public class InitialDB extends SQLiteOpenHelper{
     //private String CREATE_TABLE_SETTINGS = TABLE_SETTINGS + "()";
 
 
-    private String CREATE_DB = "CREATE TABLE if not exist " + CREATE_TABLE_USER + CREATE_TABLE_SCHEDULE + CREATE_TABLE_REMINDER;
+    private String CREATE_USER = "CREATE TABLE if not exists " + CREATE_TABLE_USER;
+    private String CREATE_SCHEDULE = "CREATE TABLE if not exists "+ CREATE_TABLE_SCHEDULE;
 }

@@ -32,7 +32,7 @@ public class UserDB {
     private SQLiteDatabase DB;
     private InitialDB DBInitial;
 
-    UserDB(Context ctx){ this.ctx = ctx; }
+    public UserDB(Context ctx){ this.ctx = ctx; }
 
     public void open() throws SQLException {
         DBInitial = new InitialDB(this.ctx);
@@ -113,5 +113,9 @@ public class UserDB {
 
     public void deleteUserById(int id){
         DB.delete(TABLE_NAME, USER_ID + "=?", new String[]{String.valueOf(id)});
+    }
+
+    public void deleteUserAll(){
+        DB.delete(TABLE_NAME, null, null);
     }
 }
