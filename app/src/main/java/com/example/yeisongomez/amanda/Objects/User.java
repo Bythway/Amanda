@@ -6,6 +6,7 @@ package com.example.yeisongomez.amanda.Objects;
 
 public class User {
 
+    public int USER_ID;
     public String APELLIDOS;
     public String NOMBRES;
     public String GENERO;
@@ -17,7 +18,8 @@ public class User {
     public String ESTADO;
     public String FOTO;
 
-    public User(String APELLIDOS, String NOMBRES, String GENERO, String RH, String CORREO, String ROL, String DEPARTAMENTO, String MUNICIPIO, String ESTADO, String FOTO) {
+    public User(int USER_ID, String APELLIDOS, String NOMBRES, String GENERO, String RH, String CORREO, String ROL, String DEPARTAMENTO, String MUNICIPIO, String ESTADO, String FOTO) {
+        this.USER_ID = USER_ID;
         this.APELLIDOS = APELLIDOS;
         this.NOMBRES = NOMBRES;
         this.GENERO = GENERO;
@@ -28,6 +30,14 @@ public class User {
         this.MUNICIPIO = MUNICIPIO;
         this.ESTADO = ESTADO;
         this.FOTO = FOTO;
+    }
+
+    public int getUSER_ID() {
+        return USER_ID;
+    }
+
+    public void setUSER_ID(int USER_ID) {
+        this.USER_ID = USER_ID;
     }
 
     public String getAPELLIDOS() {
