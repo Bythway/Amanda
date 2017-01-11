@@ -37,5 +37,6 @@ public class WebViewChairaActivity extends AppCompatActivity {
                 return false;
             }
         });
+        //TODO Obtener datos del usuario y guardarlos en local, cambiar el activity home y enviarle el user_id
     }
 }

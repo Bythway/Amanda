@@ -26,8 +26,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        if(onUser()){
-            navigationHome();
+        Cursor user = onUser();
+        if(user.getCount() > 0){
+            navigationHome(user);
         } else {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -45,21 +46,27 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, WebViewChairaActivity.class);
                 startActivity(intent);
-                //navigationHome();
             }
         };
     }
 
-    private boolean onUser(){
+    private Cursor onUser(){
         UserDB userDB = new UserDB(this);
         userDB.open();
-        //userDB.deleteUserAll();
-        //userDB.createUser(new User(1, "GOMEZ", "YEISON", "HOMBRE", "O+", "yeisom40@gmail.com", "ESTUDIANTE", "CAQUETA", "FLORENCIA", "ACTIVO", "https://avatars0.githubusercontent.com/u/14795272?v=3&u=40650119908b3b3daaf7ab0e9b8b5326dbb9909f&s=400"));
-        return (userDB.getUsers().getCount() > 0);
+        //TODO Eliminar las 2 siguientes lineas para que cargue el login
+        userDB.deleteUserAll();
+        userDB.createUser(new User(1, "GOMEZ", "YEISON", "HOMBRE", "O+", "yeisom40@gmail.com", "ESTUDIANTE", "CAQUETA", "FLORENCIA", "ACTIVO", "https://avatars0.githubusercontent.com/u/14795272?v=3&u=40650119908b3b3daaf7ab0e9b8b5326dbb9909f&s=400"));
+
+        Cursor cursor = userDB.getUsers();
+        userDB.close();
+        return cursor;
     }
 
-    private void navigationHome(){
+    private void navigationHome(Cursor user){
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        if(user != null){
+            intent.putExtra("USER_ID", user.getInt(0));
+        }
         startActivity(intent);
     }
 }

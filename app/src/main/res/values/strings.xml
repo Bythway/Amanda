@@ -3,7 +3,6 @@
     <!--Activities-->
 
     <!--Menu-->
-    <string name="action_settings">Configuraciones</string>
     <string name="navigation_drawer_open">Nose1</string>
     <string name="navigation_drawer_close">Nose2</string>
 
@@ -11,4 +10,11 @@
     <string name="icon_description">Icono Amanda</string>
     <string name="login_text">Soy Amanda</string>
     <string name="login_button">Iniciar Sesión con Chairá</string>
+
+    <!--Menu left-->
+    <string name="activity">Actividades</string>
+    <string name="diary">Agenda</string>
+    <string name="pensum">Pensum</string>
+    <string name="current_score">Notas Actuales</string>
+    <string name="action_settings">Configuraciones</string>
 </resources>
