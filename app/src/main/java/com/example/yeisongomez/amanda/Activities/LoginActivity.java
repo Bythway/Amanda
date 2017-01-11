@@ -26,15 +26,15 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Window window = this.getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+
         Cursor user = onUser();
         if(user.getCount() > 0){
             navigationHome(user);
         } else {
-            Window window = this.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
-
             login = (Button) findViewById(R.id.login_button);
             login.setOnClickListener(login());
         }
@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         userDB.open();
         //TODO Eliminar las 2 siguientes lineas para que cargue el login
         userDB.deleteUserAll();
-        userDB.createUser(new User(1, "GOMEZ", "YEISON", "HOMBRE", "O+", "yeisom40@gmail.com", "ESTUDIANTE", "CAQUETA", "FLORENCIA", "ACTIVO", "https://avatars0.githubusercontent.com/u/14795272?v=3&u=40650119908b3b3daaf7ab0e9b8b5326dbb9909f&s=400"));
+        userDB.createUser(new User(1, "GOMEZ RODRIGUEZ", "YEISON ", "HOMBRE", "O+", "yeisom40@gmail.com", "ESTUDIANTE", "CAQUETA", "FLORENCIA", "ACTIVO", "https://avatars0.githubusercontent.com/u/14795272?v=3&u=40650119908b3b3daaf7ab0e9b8b5326dbb9909f&s=400"));
 
         Cursor cursor = userDB.getUsers();
         userDB.close();

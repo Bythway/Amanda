@@ -6,17 +6,17 @@ package com.example.yeisongomez.amanda.Objects;
 
 public class User {
 
-    public int USER_ID;
-    public String APELLIDOS;
-    public String NOMBRES;
-    public String GENERO;
-    public String RH;
-    public String CORREO;
-    public String ROL;
-    public String DEPARTAMENTO;
-    public String MUNICIPIO;
-    public String ESTADO;
-    public String FOTO;
+    private int USER_ID;
+    private String APELLIDOS;
+    private String NOMBRES;
+    private String GENERO;
+    private String RH;
+    private String CORREO;
+    private String ROL;
+    private String DEPARTAMENTO;
+    private String MUNICIPIO;
+    private String ESTADO;
+    private String FOTO;
 
     public User(int USER_ID, String APELLIDOS, String NOMBRES, String GENERO, String RH, String CORREO, String ROL, String DEPARTAMENTO, String MUNICIPIO, String ESTADO, String FOTO) {
         this.USER_ID = USER_ID;
@@ -41,7 +41,7 @@ public class User {
     }
 
     public String getAPELLIDOS() {
-        return APELLIDOS;
+        return this.parse(APELLIDOS);
     }
 
     public void setAPELLIDOS(String APELLIDOS) {
@@ -49,7 +49,7 @@ public class User {
     }
 
     public String getNOMBRES() {
-        return NOMBRES;
+        return this.parse(NOMBRES);
     }
 
     public void setNOMBRES(String NOMBRES) {
@@ -65,7 +65,7 @@ public class User {
     }
 
     public String getCORREO() {
-        return CORREO;
+        return this.parse(CORREO);
     }
 
     public void setCORREO(String CORREO) {
@@ -73,7 +73,7 @@ public class User {
     }
 
     public String getROL() {
-        return ROL;
+        return this.parse(ROL);
     }
 
     public void setROL(String ROL) {
@@ -89,7 +89,7 @@ public class User {
     }
 
     public String getDEPARTAMENTO() {
-        return DEPARTAMENTO;
+        return this.parse(DEPARTAMENTO);
     }
 
     public void setDEPARTAMENTO(String DEPARTAMENTO) {
@@ -97,7 +97,7 @@ public class User {
     }
 
     public String getESTADO() {
-        return ESTADO;
+        return this.parse(ESTADO);
     }
 
     public void setESTADO(String ESTADO) {
@@ -113,10 +113,27 @@ public class User {
     }
 
     public String getMUNICIPIO() {
-        return MUNICIPIO;
+        return this.parse(MUNICIPIO);
     }
 
     public void setMUNICIPIO(String MUNICIPIO) {
         this.MUNICIPIO = MUNICIPIO;
+    }
+
+    public String getNombreApellido(){
+        String nombre = this.NOMBRES.split(" ")[0];
+        String apellido = this.APELLIDOS.split(" ")[0];
+        return this.parse(nombre + " " + apellido);
+    }
+
+    private String parse(String text){
+        String total = "";
+        String[] texts = text.split(" ");
+        for(int i = 0; i < texts.length; i++){
+            total += texts[i].substring(0, 1) + texts[i].toLowerCase().substring(1, texts[i].length());
+            if (i + 1 < texts.length )
+                total += " ";
+        }
+        return total;
     }
 }

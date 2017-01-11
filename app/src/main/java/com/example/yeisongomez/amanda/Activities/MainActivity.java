@@ -17,14 +17,14 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.yeisongomez.amanda.DiaryFragment;
+import com.example.yeisongomez.amanda.Fragments.DiaryFragment;
 import com.example.yeisongomez.amanda.Fragments.ActivitysFragment;
 import com.example.yeisongomez.amanda.Objects.User;
-import com.example.yeisongomez.amanda.PensumFragment;
+import com.example.yeisongomez.amanda.Fragments.PensumFragment;
 import com.example.yeisongomez.amanda.R;
 import com.example.yeisongomez.amanda.SQLite.UserDB;
-import com.example.yeisongomez.amanda.ScoreFragment;
-import com.example.yeisongomez.amanda.SettingsFragment;
+import com.example.yeisongomez.amanda.Fragments.ScoreFragment;
+import com.example.yeisongomez.amanda.Fragments.SettingsFragment;
 import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        //icon menu left
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.nav_activity);
+        this.navigationFragment(new ActivitysFragment());
     }
 
     @Override
@@ -91,10 +94,7 @@ public class MainActivity extends AppCompatActivity
             fragment = new SettingsFragment();
         }
 
-        FragmentTransaction fragmentTransaction =
-                getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.contentFrame, fragment);
-        fragmentTransaction.commit();
+        this.navigationFragment(fragment);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -109,13 +109,19 @@ public class MainActivity extends AppCompatActivity
             user = userDB.getUserById(extras.getInt("USER_ID"));
             userDB.close();
         }
-        editNavHeader(user.FOTO, user.NOMBRES + " " + user.APELLIDOS, user.CORREO);
+        this.editNavHeader(user.getFOTO(), user.getNombreApellido(), user.getROL());
     }
 
-    private void editNavHeader(String avatar, String names, String email){
+    private void editNavHeader(String avatar, String names, String rol){
         //TODO Agregar error al carga imagen
-        Picasso.with(this).load(avatar).resize(100, 100).centerCrop().into((ImageView) findViewById(R.id.user_avatar));
+        Picasso.with(this).load(avatar).resize(120, 120).centerCrop().into((ImageView) findViewById(R.id.user_avatar));
         ((TextView) findViewById(R.id.user_names)).setText(names);
-        ((TextView) findViewById(R.id.user_email)).setText(email);
+        ((TextView) findViewById(R.id.user_rol)).setText(rol);
+    }
+
+    private void navigationFragment(Fragment fragment){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.contentFrame, fragment);
+        fragmentTransaction.commit();
     }
 }
