@@ -39,15 +39,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         //icon menu left
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -58,7 +49,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_activity);
-        this.navigationFragment(new ActivitysFragment());
+        this.navigationFragment(new ActivitysFragment(), "Actividades");
     }
 
     @Override
@@ -82,19 +73,25 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         Fragment fragment = null;
+        String title = "Amanda";
         if (id == R.id.nav_activity) {
             fragment = new ActivitysFragment();
+            title = "Actividades";
         } else if (id == R.id.nav_diary) {
             fragment = new DiaryFragment();
+            title = "Agenda";
         } else if (id == R.id.nav_pensum) {
             fragment = new PensumFragment();
+            title = "Pensum";
         } else if (id == R.id.nav_current_score) {
             fragment = new ScoreFragment();
+            title = "Notas Actuales";
         } else if (id == R.id.nav_settings) {
             fragment = new SettingsFragment();
+            title = "Configuraciones";
         }
-
-        this.navigationFragment(fragment);
+        //fab.setVisibility(View.GONE);
+        this.navigationFragment(fragment, title);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -113,15 +110,20 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void editNavHeader(String avatar, String names, String rol){
-        //TODO Agregar error al carga imagen
-        Picasso.with(this).load(avatar).resize(120, 120).centerCrop().into((ImageView) findViewById(R.id.user_avatar));
+        Picasso.with(this).load(avatar)
+                .placeholder(R.drawable.ic_account_circle_black_80dp)
+                .error(R.drawable.ic_account_circle_black_80dp)
+                .centerCrop()
+                .resize(130, 130)
+                .into((ImageView) findViewById(R.id.user_avatar));
         ((TextView) findViewById(R.id.user_names)).setText(names);
         ((TextView) findViewById(R.id.user_rol)).setText(rol);
     }
 
-    private void navigationFragment(Fragment fragment){
+    private void navigationFragment(Fragment fragment, String title){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.contentFrame, fragment);
         fragmentTransaction.commit();
+        setTitle(title);
     }
 }

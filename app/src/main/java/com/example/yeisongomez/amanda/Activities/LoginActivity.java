@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.yeisongomez.amanda.Objects.User;
 import com.example.yeisongomez.amanda.R;
@@ -35,6 +36,9 @@ public class LoginActivity extends AppCompatActivity {
         if(user.getCount() > 0){
             navigationHome(user);
         } else {
+            ImageView logo = (ImageView) findViewById(R.id.login_image);
+            logo.setImageResource(R.mipmap.ic_launcher);
+
             login = (Button) findViewById(R.id.login_button);
             login.setOnClickListener(login());
         }
