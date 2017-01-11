@@ -1,9 +1,10 @@
 package com.example.yeisongomez.amanda.Activities;
 
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,9 +17,14 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.yeisongomez.amanda.DiaryFragment;
+import com.example.yeisongomez.amanda.Fragments.ActivitysFragment;
 import com.example.yeisongomez.amanda.Objects.User;
+import com.example.yeisongomez.amanda.PensumFragment;
 import com.example.yeisongomez.amanda.R;
 import com.example.yeisongomez.amanda.SQLite.UserDB;
+import com.example.yeisongomez.amanda.ScoreFragment;
+import com.example.yeisongomez.amanda.SettingsFragment;
 import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity
@@ -57,50 +63,38 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
         }
+            //super.onBackPressed();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
         getUser();
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        Fragment fragment = null;
         if (id == R.id.nav_activity) {
-
+            fragment = new ActivitysFragment();
         } else if (id == R.id.nav_diary) {
-
+            fragment = new DiaryFragment();
         } else if (id == R.id.nav_pensum) {
-
+            fragment = new PensumFragment();
         } else if (id == R.id.nav_current_score) {
-
+            fragment = new ScoreFragment();
         } else if (id == R.id.nav_settings) {
-
+            fragment = new SettingsFragment();
         }
+
+        FragmentTransaction fragmentTransaction =
+                getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.contentFrame, fragment);
+        fragmentTransaction.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
