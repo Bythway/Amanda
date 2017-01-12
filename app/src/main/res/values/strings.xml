@@ -5,6 +5,8 @@
     <!--Menu-->
     <string name="navigation_drawer_open">Nose1</string>
     <string name="navigation_drawer_close">Nose2</string>
+    <string name="done">Listo</string>
+    <string name="cancel">Cancelar</string>
 
     <!-- Login -->
     <string name="icon_description">Icono Amanda</string>
@@ -18,8 +20,6 @@
     <string name="pensum">Pensum</string>
     <string name="current_score">Notas Actuales</string>
     <string name="action_settings">Configuraciones</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_activity">Agregar Actividad</string>
 
 </resources>

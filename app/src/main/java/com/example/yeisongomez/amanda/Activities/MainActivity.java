@@ -36,20 +36,13 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        //icon menu left
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        addIconMenuToolbar();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_activity);
-        this.navigationFragment(new ActivitysFragment(), "Actividades");
+        this.navigationFragment(new ActivitysFragment());
     }
 
     @Override
@@ -57,8 +50,13 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else {
+            CharSequence title = ((Toolbar) findViewById(R.id.toolbar)).getTitle();
+            if (title == getString(R.string.add_activity)){
+                addIconMenuToolbar();
+            }
+            super.onBackPressed();
         }
-            //super.onBackPressed();
     }
 
     @Override
@@ -73,25 +71,19 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         Fragment fragment = null;
-        String title = "Amanda";
         if (id == R.id.nav_activity) {
             fragment = new ActivitysFragment();
-            title = "Actividades";
         } else if (id == R.id.nav_diary) {
             fragment = new DiaryFragment();
-            title = "Agenda";
         } else if (id == R.id.nav_pensum) {
             fragment = new PensumFragment();
-            title = "Pensum";
         } else if (id == R.id.nav_current_score) {
             fragment = new ScoreFragment();
-            title = "Notas Actuales";
         } else if (id == R.id.nav_settings) {
             fragment = new SettingsFragment();
-            title = "Configuraciones";
         }
-        //fab.setVisibility(View.GONE);
-        this.navigationFragment(fragment, title);
+
+        this.navigationFragment(fragment);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -120,10 +112,19 @@ public class MainActivity extends AppCompatActivity
         ((TextView) findViewById(R.id.user_rol)).setText(rol);
     }
 
-    private void navigationFragment(Fragment fragment, String title){
+    private void navigationFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.contentFrame, fragment);
         fragmentTransaction.commit();
-        setTitle(title);
+    }
+
+    private void addIconMenuToolbar(){
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
     }
 }
