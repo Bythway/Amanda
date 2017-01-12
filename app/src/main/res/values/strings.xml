@@ -9,8 +9,8 @@
     <!-- Login -->
     <string name="icon_description">Icono Amanda</string>
     <string name="login_text1">Bienvenido</string>
-    <string name="login_text2">Asistente de la Universidad de la Amazonia</string>
-    <string name="login_button">Iniciar Sesión con Chairá</string>
+    <string name="login_text2">Organiza tu agenda universitaria con Amanda</string>
+    <string name="login_button">Iniciar sesión con Chairá</string>
 
     <!--Menu left-->
     <string name="activity">Actividades</string>
