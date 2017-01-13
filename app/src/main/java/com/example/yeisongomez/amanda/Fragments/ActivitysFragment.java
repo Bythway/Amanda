@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,31 +25,21 @@ import com.example.yeisongomez.amanda.R;
  * create an instance of this fragment.
  */
 public class ActivitysFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
     private FragmentActivity myCtx;
+    private ActionBarDrawerToggle toggle;
 
-    public ActivitysFragment() {
-        // Required empty public constructor
-    }
+    public ActivitysFragment(){}
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ActivitysFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+    public ActivitysFragment(ActionBarDrawerToggle toggle) { this.toggle = toggle; }
+
     public static ActivitysFragment newInstance(String param1, String param2) {
         ActivitysFragment fragment = new ActivitysFragment();
         Bundle args = new Bundle();
@@ -65,7 +56,6 @@ public class ActivitysFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
@@ -73,8 +63,7 @@ public class ActivitysFragment extends Fragment {
                              Bundle savedInstanceState) {
         getActivity().setTitle(R.string.activity);
 
-        View rootView = inflater.inflate(R.layout.fragment_activitys,
-                container, false);
+        View rootView = inflater.inflate(R.layout.fragment_activitys, container, false);
         FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.add_activitys);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,10 +71,25 @@ public class ActivitysFragment extends Fragment {
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.contentFrame, new AddActivityFragment());
                 ft.addToBackStack("add_fragment");
+                //TODO hide icon menu toolbar
+                toggle.setHomeAsUpIndicator(R.drawable.ic_cancel_30dp);
+                toggle.setToolbarNavigationClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        getActivity().onBackPressed();
+                    }
+                });
+                toggle.setDrawerIndicatorEnabled(false);
                 ft.commit();
             }
         });
         return rootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        toggle.setDrawerIndicatorEnabled(true);
     }
 
     public void onButtonPressed(Uri uri) {
@@ -110,7 +114,6 @@ public class ActivitysFragment extends Fragment {
     }
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 

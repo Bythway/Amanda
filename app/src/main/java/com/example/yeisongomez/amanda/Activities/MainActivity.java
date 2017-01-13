@@ -1,5 +1,7 @@
 package com.example.yeisongomez.amanda.Activities;
 
+import android.app.FragmentManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     User user;
+    public static ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +45,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_activity);
-        this.navigationFragment(new ActivitysFragment());
+        this.navigationFragment(new ActivitysFragment(this.toggle));
     }
 
     @Override
@@ -51,10 +54,7 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            CharSequence title = ((Toolbar) findViewById(R.id.toolbar)).getTitle();
-            if (title == getString(R.string.add_activity)){
-                addIconMenuToolbar();
-            }
+            toggle.setDrawerIndicatorEnabled(true);
             super.onBackPressed();
         }
     }
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity
 
         Fragment fragment = null;
         if (id == R.id.nav_activity) {
-            fragment = new ActivitysFragment();
+            fragment = new ActivitysFragment(toggle);
         } else if (id == R.id.nav_diary) {
             fragment = new DiaryFragment();
         } else if (id == R.id.nav_pensum) {
@@ -122,8 +122,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        this.toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
     }
