@@ -38,4 +38,6 @@
     <string name="hint_hour">Hora</string>
     <string name="add_day">Agregar día</string>
 
+    <!--Notifications-->
+
 </resources>
