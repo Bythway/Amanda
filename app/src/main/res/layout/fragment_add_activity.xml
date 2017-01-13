@@ -1,12 +1,102 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.yeisongomez.amanda.Fragments.AddActivityFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Agregar Actividad" />
+        <EditText
+            android:id="@+id/activity_name"
+            android:drawableLeft="@drawable/focus_activity_name"
+            android:drawablePadding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:ems="15"
+            android:hint="@string/hint_name"
+            android:maxLength="30"
+            android:inputType="text"
+            android:layout_weight="1" />
+
+        <EditText
+            android:id="@+id/activity_place"
+            android:drawableLeft="@drawable/focus_activity_place"
+            android:drawablePadding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="80dp"
+            android:ems="15"
+            android:hint="@string/hint_place"
+            android:maxLength="30"
+            android:inputType="text"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_event_black_24dp"
+                    android:id="@+id/imageView" />
+
+                <Spinner
+                    android:id="@+id/activity_day"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:ems="15"
+                    android:layout_weight="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="190dp">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    app:srcCompat="@drawable/ic_access_time_black_24dp" />
+
+                <Button
+                    android:text="@string/hint_hour"
+                    android:gravity="center"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:id="@+id/hour_init" />
+
+                <TextView
+                    android:text="-"
+                    android:textSize="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"/>
+
+                <Button
+                    android:text="@string/hint_hour"
+                    android:gravity="center"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:id="@+id/hour_final"/>
+            </LinearLayout>
+
+
 
 </FrameLayout>

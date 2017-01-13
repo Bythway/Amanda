@@ -71,7 +71,7 @@ public class ActivitysFragment extends Fragment {
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.contentFrame, new AddActivityFragment());
                 ft.addToBackStack("add_fragment");
-                //TODO hide icon menu toolbar
+                //TODO Active icon back
                 toggle.setHomeAsUpIndicator(R.drawable.ic_cancel_30dp);
                 toggle.setToolbarNavigationClickListener(new View.OnClickListener() {
                     @Override
@@ -79,6 +79,7 @@ public class ActivitysFragment extends Fragment {
                         getActivity().onBackPressed();
                     }
                 });
+                //TODO hide icon menu toolbar
                 toggle.setDrawerIndicatorEnabled(false);
                 ft.commit();
             }

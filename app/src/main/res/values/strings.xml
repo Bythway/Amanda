@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">Amanda</string>
+    <string-array name="days">
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miércoles</item>
+        <item>Jueves</item>
+        <item>Viernes</item>
+        <item>Sabado</item>
+        <item>Domingo</item>
+    </string-array>
     <!--Activities-->
 
     <!--Menu-->
@@ -21,5 +30,12 @@
     <string name="current_score">Notas Actuales</string>
     <string name="action_settings">Configuraciones</string>
     <string name="add_activity">Agregar Actividad</string>
+
+    <!--Text add_activitys-->
+    <string name="hint_name">Nombre</string>
+    <string name="hint_place">Lugar</string>
+    <string name="hint_day">Día</string>
+    <string name="hint_hour">Hora</string>
+    <string name="add_day">Agregar día</string>
 
 </resources>
