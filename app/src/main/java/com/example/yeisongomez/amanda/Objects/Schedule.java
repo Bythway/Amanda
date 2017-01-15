@@ -8,18 +8,19 @@ import android.media.Image;
 
 public class Schedule {
 
-    public int SCHEDULE_ID;
-    public String CODIGO;
-    public String CODIGOGRUPO;
-    public String DIA;
-    public String DOCENTE;
-    public String ESPACIOFISICO;
-    public String LOCALIDAD;
-    public String NOMBREGRUPO;
-    public String NOMBREMATERIA;
-    public String NOMENCLATURA;
-    public String TIEMPO;
-    public String UNID_NOMBRE;
+    private int SCHEDULE_ID;
+    private String CODIGO;
+    private String CODIGOGRUPO;
+    private String DIA;
+    private String DOCENTE;
+    private String ESPACIOFISICO;
+    private String LOCALIDAD;
+    private String NOMBREGRUPO;
+    private String NOMBREMATERIA;
+    private String NOMENCLATURA;
+    private String TIEMPO;
+    private String UNID_NOMBRE;
+    private String STRING_RESOURCES;
 
     public Schedule(int SCHEDULE_ID, String CODIGO, String CODIGOGRUPO, String DIA, String DOCENTE, String LOCALIDAD, String ESPACIOFISICO, String NOMBREGRUPO, String NOMBREMATERIA, String NOMENCLATURA, String TIEMPO, String UNID_NOMBRE) {
         this.SCHEDULE_ID = SCHEDULE_ID;
@@ -34,6 +35,7 @@ public class Schedule {
         this.NOMENCLATURA = NOMENCLATURA;
         this.TIEMPO = TIEMPO;
         this.UNID_NOMBRE = UNID_NOMBRE;
+        this.STRING_RESOURCES = DIA + " " + TIEMPO + " ➜ " + NOMENCLATURA;
     }
 
     public int getSCHEDULE_ID() {
@@ -126,5 +128,13 @@ public class Schedule {
 
     public void setUNID_NOMBRE(String UNID_NOMBRE) {
         this.UNID_NOMBRE = UNID_NOMBRE;
+    }
+
+    public String getSTRING_RESOURCES() {
+        return STRING_RESOURCES;
+    }
+
+    public void setSTRING_RESOURCES(String STRING_RESOURCES) {
+        this.STRING_RESOURCES += "\n" + STRING_RESOURCES;
     }
 }

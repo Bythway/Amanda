@@ -27,13 +27,13 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/activity_name"
             android:layout_toRightOf="@+id/activity_icon"
             android:layout_alignParentTop="true"
-            android:textSize="30sp"
+            android:textSize="22sp"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/activity_day"
+            android:id="@+id/activity_resources"
             android:layout_toRightOf="@+id/activity_icon"
             android:layout_below="@+id/activity_name"
             />

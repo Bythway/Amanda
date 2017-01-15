@@ -34,10 +34,10 @@ public class RecyclerActivitysAdapter extends RecyclerView.Adapter<RecyclerActiv
     @Override
     public void onBindViewHolder(ActivityAdapter activity, int i) {
         TextDrawable drawable = TextDrawable.builder()
-                .buildRoundRect(activitys.get(i).NOMBREMATERIA.substring(0, 2).toUpperCase(), R.color.colorRed, 50);
+                .buildRoundRect(activitys.get(i).getNOMBREMATERIA().substring(0, 2).toUpperCase(), R.color.colorRed, 50);
 
-        activity.name.setText(activitys.get(i).NOMBREMATERIA);
-        activity.day.setText(activitys.get(i).DIA);
+        activity.name.setText(activitys.get(i).getNOMBREMATERIA());
+        activity.resources.setText(activitys.get(i).getSTRING_RESOURCES());
         activity.icon.setImageDrawable(drawable);
     }
 
@@ -54,12 +54,12 @@ public class RecyclerActivitysAdapter extends RecyclerView.Adapter<RecyclerActiv
     public static class ActivityAdapter extends RecyclerView.ViewHolder {
         ImageView icon;
         TextView name;
-        TextView day;
+        TextView resources;
 
         public ActivityAdapter(View itemView) {
             super(itemView);
             this.icon = (ImageView) itemView.findViewById(R.id.activity_icon);
-            this.day = (TextView) itemView.findViewById(R.id.activity_day);
+            this.resources = (TextView) itemView.findViewById(R.id.activity_resources);
             this.name = (TextView) itemView.findViewById(R.id.activity_name);
         }
     }

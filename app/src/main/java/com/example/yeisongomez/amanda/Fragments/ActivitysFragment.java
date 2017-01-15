@@ -82,9 +82,16 @@ public class ActivitysFragment extends Fragment {
 
     public List simulateActivitys(){
         List<Schedule> list = new ArrayList<>();
-        list.add(new Schedule(1, "123213", "5332", "213123", "Lunes", "asd", "weq", "Mate", "Matematicas", "", "", ""));
-        list.add(new Schedule(1, "123213", "5332", "213123", "Miercoles", "asd", "weq", "Mate", "Español", "", "", ""));
-        list.add(new Schedule(1, "123213", "5332", "213123", "Miercoles", "asd", "weq", "Mate", "Español", "", "", ""));
+        Schedule activity1 = new Schedule(1, "123213", "5332", "Lunes", "Ramiro", "asd", "weq", "Mate", "Matematicas", "7205", "12:05 - 23:00", "");
+        Schedule activity2 = new Schedule(1, "123213", "5332", "Martes", "Ramiro", "asd", "weq", "Mate", "Español", "7204", "11:05 - 22:00", "");
+        Schedule activity3 = new Schedule(1, "123213", "5332", "Miercoles", "Ramiro", "asd", "weq", "Mate", "Comunicacion", "7203", "10:05 - 21:00", "");
+        activity1.setSTRING_RESOURCES(activity2.getSTRING_RESOURCES());
+        activity2.setSTRING_RESOURCES(activity3.getSTRING_RESOURCES());
+        activity3.setSTRING_RESOURCES(activity1.getSTRING_RESOURCES());
+
+        list.add(activity1);
+        list.add(activity2);
+        list.add(activity3);
         return list;
     }
 
