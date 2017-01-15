@@ -36,13 +36,12 @@ public class AddActivityFragment extends Fragment {
 
     View thisview;
     Dialog dialog;
-    Button hourInit;
-    Button hourFinal;
     TimePicker picker;
     ArrayList<View> componentFormDay = new ArrayList<>();
     RelativeLayout layoutForm;
     FloatingActionButton addDays;
     FloatingActionButton removeDays;
+    Button currentPressedPicker;
     int marginTopComponentDays = 340;
     int formDays = 1;
 
@@ -112,28 +111,36 @@ public class AddActivityFragment extends Fragment {
     private void setButtonsHourEvent(View component){
         Button hourInit = (Button) component.findViewById(R.id.hour_init);
         Button hourFinal = (Button) component.findViewById(R.id.hour_final);
-        hourInit.setOnClickListener(changeHour());
-        hourFinal.setOnClickListener(changeHour());
 
         Date hour = new Date(System.currentTimeMillis());
         SimpleDateFormat timeFormatter = new SimpleDateFormat("h:mm a");
-        hourInit.setText(timeFormatter.format(hour));
+        String tHourInit =  timeFormatter.format(hour);
         hour.setHours(hour.getHours() + 2);
-        hourFinal.setText(timeFormatter.format(hour));
+        String tHourFinal = timeFormatter.format(hour);
+
+        hourInit.setText(tHourInit);
+        hourFinal.setText(tHourFinal);
+        hourInit.setOnClickListener(changeHour(tHourInit));
+        hourFinal.setOnClickListener(changeHour(tHourFinal));
     }
 
-    private View.OnClickListener changeHour(){
+    private View.OnClickListener changeHour(String format){
+        final String time = format;
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch(v.getId()) {
                     case R.id.hour_init:
-                        hourInit.setText("");
+                        currentPressedPicker = (Button) v;
                         break;
                     case R.id.hour_final:
-                        hourFinal.setText("");
+                        currentPressedPicker = (Button) v;
                         break;
                 }
+                String[] hour = time.split(" ");
+                String[] num = hour[0].split(":");
+                picker.setCurrentHour(hour[1].equals("p.") ? (Integer.parseInt(num[0])) + 12: Integer.parseInt(num[0]));
+                picker.setCurrentMinute(Integer.parseInt(num[1]));
                 dialog.show();
             }
         };
@@ -184,11 +191,7 @@ public class AddActivityFragment extends Fragment {
                 SimpleDateFormat timeFormatter = new SimpleDateFormat("h:mm a");
                 hour2.setHours(picker.getCurrentHour());
                 hour2.setMinutes(picker.getCurrentMinute());
-                if (hourInit.getText() == ""){
-                    hourInit.setText(timeFormatter.format(hour2));
-                } else {
-                    hourFinal.setText(timeFormatter.format(hour2));
-                }
+                currentPressedPicker.setText(timeFormatter.format(hour2));
             }
         });
         Button saveHour = (Button) dialog.findViewById(R.id.save_hour);
