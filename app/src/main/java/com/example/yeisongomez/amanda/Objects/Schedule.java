@@ -1,5 +1,7 @@
 package com.example.yeisongomez.amanda.Objects;
 
+import android.media.Image;
+
 /**
  * Created by YeisonGomez on 9/01/17.
  */
