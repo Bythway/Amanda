@@ -3,7 +3,6 @@ package com.example.yeisongomez.amanda.Fragments;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,11 +10,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.example.yeisongomez.amanda.Adapters.RecyclerActivitysAdapter;
 import com.example.yeisongomez.amanda.Objects.Schedule;
 import com.example.yeisongomez.amanda.R;
+import com.example.yeisongomez.amanda.Util.Notification;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +47,10 @@ public class ActivitysFragment extends Fragment {
         list_activitys.setAdapter(adapter);
 
         eventFloatingButton();
+
+        //Notificacion
+        Notification notification = new Notification();
+        notification.notificate(this.getContext(), "Hola mundo", "Probando parametro");
         return rootView;
     }
 

@@ -21,6 +21,7 @@ public class Schedule {
     private String TIEMPO;
     private String UNID_NOMBRE;
     private String STRING_RESOURCES;
+    private boolean notificate;
 
     public Schedule(int SCHEDULE_ID, String CODIGO, String CODIGOGRUPO, String DIA, String DOCENTE, String LOCALIDAD, String ESPACIOFISICO, String NOMBREGRUPO, String NOMBREMATERIA, String NOMENCLATURA, String TIEMPO, String UNID_NOMBRE) {
         this.SCHEDULE_ID = SCHEDULE_ID;
@@ -136,5 +137,13 @@ public class Schedule {
 
     public void setSTRING_RESOURCES(String STRING_RESOURCES) {
         this.STRING_RESOURCES += "\n" + STRING_RESOURCES;
+    }
+
+    public boolean isNotificate() {
+        return notificate;
+    }
+
+    public void setNotificate(boolean notificate) {
+        this.notificate = notificate;
     }
 }
