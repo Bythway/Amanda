@@ -50,7 +50,7 @@ public class ActivitysFragment extends Fragment {
 
         //Notificacion
         Notification notification = new Notification();
-        notification.notificate(this.getContext(), "Hola mundo", "Probando parametro");
+        notification.notificate(this.getContext(), "Hola mundo", "Lunes!", false, "12:00", "LUNES");
         return rootView;
     }
 
